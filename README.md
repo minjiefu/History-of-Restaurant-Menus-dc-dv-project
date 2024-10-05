@@ -25,15 +25,16 @@ Creating the Workflow Models with OR2YWTool and yesWorkflow
 ## Phase 3 Use case demo with tableau and documentation
 
 
+
+
 # Data Visualization
 ## Purpose
 This purpose is to create a narrative visualization implemented as an interactive web
 page, using the knowledge of visual communication and narrative structure learned in
 course CS416. 
 ## Design
--- The narrative visualization is built with scenes, annotations, parameters,
-and triggers.
--- Dash Plotly Framework, d3, d3-annotation
+#### The narrative visualization is built with scenes, annotations, parameters, and triggers.
+#### Dash Plotly Framework, d3, d3-annotation
 
 
 # Demo
