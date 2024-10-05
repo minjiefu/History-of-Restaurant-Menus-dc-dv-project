@@ -13,17 +13,17 @@ Library’s menu collection dating from the 1840s to the present. Till now, a qu
 them have been digitized and collected in this database.
 The database contains 4 tables: Menu, MenuPage, MenuItem, and Dish.
 ## Phase 1 initial assessment
-Select the dataset
-Describe the dataset: structure, schema and content
-Identify obvious data quality issues
-Develop use case and data cleaning goals
-Develop work plan
+- Select the dataset
+- Describe the dataset: structure, schema and content
+- Identify obvious data quality issues
+- Develop use case and data cleaning goals
+- Develop work plan
 ## Phase 2 Data cleaning
-Use OpenRefine and Python to clean the dataset
-Developing a Relational Schema and check integrity constraints with SQL
-Creating the Workflow Models with OR2YWTool and yesWorkflow
+- Use OpenRefine and Python to clean the dataset
+- Developing a Relational Schema and check integrity constraints with SQL
+- Creating the Workflow Models with OR2YWTool and yesWorkflow
 ## Phase 3 Use case demo with tableau and documentation
-Write final report
+- Write final report
 
 
 
@@ -34,7 +34,7 @@ page, using the knowledge of visual communication and narrative structure learne
 course CS416. 
 ## Design
 - The narrative visualization is built with scenes, annotations, parameters, and triggers.
-- Dash Plotly Framework, d3, d3-annotation
+- The only libraries used are d3 and d3-annotation, as a practice of D3 programming.
 
 
 # Demo
