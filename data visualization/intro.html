@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>cs416 Minjie Fu</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+  </head>
+<body class="cover">
+    <div class="head-div">
+        <div class="title">
+            <h1>Tracing the History of Restaurant Menus</h1>
+            <h3>UIUC CS416 Data Visualization Final Project<br /> -- by Minjie Fu</h3>
+        </div>
+        <div class="move">
+            <button type="button" onclick="window.location='index.html';">Home</button>
+        <button type="button" onclick="window.location='intro.html';">Introduction</button>
+        <button type="button" onclick="window.location='timeline.html';">Timeline</button>
+        <button type="button" onclick="window.location='restaurants.html';">Top 10 Restaurants</button>
+        <button type="button" onclick="window.location='dishes.html';">Top 10 Dishes</button>
+        <button type="button" onclick="window.location='conclusion.html';">End</button>
+        </div>
+    </div>
+    <div class="content-div">
+        <div class="container-left">
+            <button class="button button2" type="button" onclick="window.location='index.html';">《</button>
+        </div>   
+        <div class="container-right">
+            <button class="button button3" type="button" onclick="window.location='timeline.html';">》</button>
+        </div>   
+        
+
+        
+            
+          
+        <div class="float-child1">
+            <h2>
+                Data Source
+            </h2>
+            <h3>
+                The dataset I used is NYPL-menus. It is a project named “What's on the Menu” launched by NYPL (New York Public Library) in late April, 2011. The project aimed at scanning and transcribing all the 45,000 menus contained in the New York Public Library’s menu collection dating from the 1840s to the present. 
+                Till now, a quarter of them have been digitized and collected in this database.
+            <br>
+            <br />
+                To prepare the dataset for the visualization, I used the data cleaning and provenance tools and techniques introduced in course CS513.
+                The main tools used include OpenRefine, SQL, Python and YesWorkflow.
+            </h3>
+          </div>
+
+          <div class="float-child2">
+            <h2>
+                Project Purpose
+            </h2>
+            <h3>
+                This project aims to create a narrative visualization implemented as an interactive web page, 
+                using the knowledge of visual communication and narrative structure learned in course CS416. 
+                The narrative visualization is built with scenes, annotations, parameters, and triggers.
+                The only libraries used are d3 and d3-annotation, as a practice of D3 programming.
+            <br>
+            <br />
+
+            As a small attempt at using visuals to represent the data and information, 
+            this project did not attempt to visualize all the dimensions of the dataset.
+            It only focuses on the 3 dimensions: the timeline of menus, top 10 restaurants, and top 10 dishes.
+            </h3>
+          </div>
+          
+         
+        </div>
+        
+    </div>
+   
+    
+</body>
+
+</html>
