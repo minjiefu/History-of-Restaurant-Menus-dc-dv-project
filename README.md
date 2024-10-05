@@ -33,8 +33,8 @@ This purpose is to create a narrative visualization implemented as an interactiv
 page, using the knowledge of visual communication and narrative structure learned in
 course CS416. 
 ## Design
-#### The narrative visualization is built with scenes, annotations, parameters, and triggers.
-#### Dash Plotly Framework, d3, d3-annotation
+- The narrative visualization is built with scenes, annotations, parameters, and triggers.
+- Dash Plotly Framework, d3, d3-annotation
 
 
 # Demo
