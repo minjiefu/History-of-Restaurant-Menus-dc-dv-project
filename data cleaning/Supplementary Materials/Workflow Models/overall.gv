@@ -1,0 +1,97 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=Overall_Workflow
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+Clean_Menu_With_OpenRefine [shape=record rankdir=LR label="{<f0> Clean_Menu_With_OpenRefine |<f1> Use OpenRefine to clean Menu.csv}"];
+Clean_Dish_With_OpenRefine [shape=record rankdir=LR label="{<f0> Clean_Dish_With_OpenRefine |<f1> Use OpenRefine to clean Dish.csv}"];
+Clean_Menupage_With_OpenRefine [shape=record rankdir=LR label="{<f0> Clean_Menupage_With_OpenRefine |<f1> Use OpenRefine to clean MenuPage.csv}"];
+Clean_MenuItem_With_OpenRefine [shape=record rankdir=LR label="{<f0> Clean_MenuItem_With_OpenRefine |<f1> Use OpenRefine to clean MenuItem.csv}"];
+Table_Menu_Creation_and_Data_Import_With_SQL [shape=record rankdir=LR label="{<f0> Table_Menu_Creation_and_Data_Import_With_SQL |<f1> Use SQL to create Table Menu and import CleanMenu.csv into the table}"];
+Table_Dish_Creation_and_Data_Import_With_SQL [shape=record rankdir=LR label="{<f0> Table_Dish_Creation_and_Data_Import_With_SQL |<f1> Use SQL to create Table Dish and import CleanDish.csv into the table}"];
+Table_MenuPage_Creation_and_Data_Import_With_SQL [shape=record rankdir=LR label="{<f0> Table_MenuPage_Creation_and_Data_Import_With_SQL |<f1> Use SQL to create Table MenuPage and import CleanMenuPage.csv into the table}"];
+Table_MenuItem_Creation_and_Data_Import_With_SQL [shape=record rankdir=LR label="{<f0> Table_MenuItem_Creation_and_Data_Import_With_SQL |<f1> Use SQL to create Table MenuItem and import CleanMenuItem.csv into the table}"];
+Constraints_Check_With_SQL [shape=record rankdir=LR label="{<f0> Constraints_Check_With_SQL |<f1> Use SQL to check integrity constraints}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+"Menu.csv" [shape=record rankdir=LR label="{<f0> Menu.csv |<f1> /original_dataset/Menu.csv}"];
+"Dish.csv" [shape=record rankdir=LR label="{<f0> Dish.csv |<f1> /original_dataset/Dish.csv}"];
+"MenuPage.csv" [shape=record rankdir=LR label="{<f0> MenuPage.csv |<f1> /original_dataset/MenuPage.csv}"];
+"MenuItem.csv" [shape=record rankdir=LR label="{<f0> MenuItem.csv |<f1> /original_dataset/MenuItem.csv}"];
+"CleanMenu.csv" [shape=record rankdir=LR label="{<f0> CleanMenu.csv |<f1> /cleaned_dataset/CleanMenu.csv}"];
+"CleanDish.csv" [shape=record rankdir=LR label="{<f0> CleanDish.csv |<f1> /cleaned_dataset/CleanDish.csv}"];
+"CleanMenuPage.csv" [shape=record rankdir=LR label="{<f0> CleanMenuPage.csv |<f1> /cleaned_dataset/CleanMenuPage.csv}"];
+"CleanMenuItem.csv" [shape=record rankdir=LR label="{<f0> CleanMenuItem.csv |<f1> /cleaned_dataset/CleanMenuItem.csv}"];
+TABLE_MENU
+TABLE_DISH
+TABLE_MENUITEM
+TABLE_MENUPAGE
+"CheckedMenu.csv" [shape=record rankdir=LR label="{<f0> CheckedMenu.csv |<f1> /checked_dataset/CheckedMenu.csv}"];
+"CheckedDish.csv" [shape=record rankdir=LR label="{<f0> CheckedDish.csv |<f1> /checked_dataset/CheckedDish.csv}"];
+"CheckedMenuItem.csv" [shape=record rankdir=LR label="{<f0> CheckedMenuItem.csv |<f1> /checked_dataset/CheckedMenuItem.csv}"];
+"CheckedMenuPage.csv" [shape=record rankdir=LR label="{<f0> CheckedMenuPage.csv |<f1> /checked_dataset/CheckedMenuPage.csv}"];
+"openRefine_history_menu.json" [shape=record rankdir=LR label="{<f0> openRefine_history_menu.json |<f1> /openRefine_history/openRefine_history_menu.json}"];
+"openRefine_history_menuitem.json" [shape=record rankdir=LR label="{<f0> openRefine_history_menuitem.json |<f1> /openRefine_history/openRefine_history_menuitem.json}"];
+"openRefine_history_menupage.json" [shape=record rankdir=LR label="{<f0> openRefine_history_menupage.json |<f1> /openRefine_history/openRefine_history_menupage.json}"];
+"openRefine_history_dish.json" [shape=record rankdir=LR label="{<f0> openRefine_history_dish.json |<f1> /openRefine_history/openRefine_history_dish.json}"];
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+
+/* Edges representing connections between programs and channels */
+Clean_Menu_With_OpenRefine -> "CleanMenu.csv"
+Clean_Menu_With_OpenRefine -> "openRefine_history_menu.json"
+"Menu.csv" -> Clean_Menu_With_OpenRefine
+Table_Menu_Cleaning_Plan -> Clean_Menu_With_OpenRefine
+Clean_Dish_With_OpenRefine -> "CleanDish.csv"
+Clean_Dish_With_OpenRefine -> "openRefine_history_dish.json"
+"Dish.csv" -> Clean_Dish_With_OpenRefine
+Table_Dish_Cleaning_Plan -> Clean_Dish_With_OpenRefine
+Clean_Menupage_With_OpenRefine -> "CleanMenuPage.csv"
+Clean_Menupage_With_OpenRefine -> "openRefine_history_menupage.json"
+"MenuPage.csv" -> Clean_Menupage_With_OpenRefine
+Table_Menupage_Cleaning_Plan -> Clean_Menupage_With_OpenRefine
+Clean_MenuItem_With_OpenRefine -> "CleanMenuItem.csv"
+Clean_MenuItem_With_OpenRefine -> "openRefine_history_menuitem.json"
+"MenuItem.csv" -> Clean_MenuItem_With_OpenRefine
+Table_Menuitem_Cleaning_Plan -> Clean_MenuItem_With_OpenRefine
+Table_Menu_Creation_and_Data_Import_With_SQL -> TABLE_MENU
+"CleanMenu.csv" -> Table_Menu_Creation_and_Data_Import_With_SQL
+Table_Dish_Creation_and_Data_Import_With_SQL -> TABLE_DISH
+"CleanDish.csv" -> Table_Dish_Creation_and_Data_Import_With_SQL
+Table_MenuPage_Creation_and_Data_Import_With_SQL -> TABLE_MENUPAGE
+"CleanMenuPage.csv" -> Table_MenuPage_Creation_and_Data_Import_With_SQL
+Table_MenuItem_Creation_and_Data_Import_With_SQL -> TABLE_MENUITEM
+"CleanMenuItem.csv" -> Table_MenuItem_Creation_and_Data_Import_With_SQL
+Constraints_Check_With_SQL -> "CheckedMenu.csv"
+Constraints_Check_With_SQL -> "CheckedDish.csv"
+Constraints_Check_With_SQL -> "CheckedMenuItem.csv"
+Constraints_Check_With_SQL -> "CheckedMenuPage.csv"
+TABLE_MENU -> Constraints_Check_With_SQL
+TABLE_DISH -> Constraints_Check_With_SQL
+TABLE_MENUITEM -> Constraints_Check_With_SQL
+TABLE_MENUPAGE -> Constraints_Check_With_SQL
+Integrity_Constraints_Scripts -> Constraints_Check_With_SQL
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* End of top-level graph */
+}

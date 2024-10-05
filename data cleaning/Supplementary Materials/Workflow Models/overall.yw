@@ -1,0 +1,80 @@
+# @begin Overall_Workflow  @desc Overall Workflow for cleaning NYPL Menus DataSet
+# @in Menu.csv  @uri /original_dataset/Menu.csv
+# @in Dish.csv  @uri /original_dataset/Dish.csv
+# @in MenuItem.csv  @uri /original_dataset/MenuItem.csv
+# @in MenuPage.csv  @uri /original_dataset/MenuPage.csv
+
+#     @begin Clean_Menu_With_OpenRefine  @desc Use OpenRefine to clean Menu.csv
+#     @in Menu.csv  @uri /original_dataset/Menu.csv
+#     @param Table_Menu_Cleaning_Plan
+#     @out CleanMenu.csv  @uri /cleaned_dataset/CleanMenu.csv
+#     @out openRefine_history_menu.json  @uri /openRefine_history/openRefine_history_menu.json
+#     @end Clean_Menu_With_OpenRefine
+
+#     @begin Clean_Dish_With_OpenRefine  @desc Use OpenRefine to clean Dish.csv
+#     @in Dish.csv  @uri /original_dataset/Dish.csv
+#     @param Table_Dish_Cleaning_Plan
+#     @out CleanDish.csv  @uri /cleaned_dataset/CleanDish.csv
+#     @out openRefine_history_dish.json  @uri /openRefine_history/openRefine_history_dish.json
+#     @end Clean_Dish_With_OpenRefine
+
+#     @begin Clean_Menupage_With_OpenRefine  @desc Use OpenRefine to clean MenuPage.csv
+#     @in MenuPage.csv  @uri /original_dataset/MenuPage.csv
+#     @param Table_Menupage_Cleaning_Plan
+#     @out CleanMenuPage.csv  @uri /cleaned_dataset/CleanMenuPage.csv
+#     @out openRefine_history_menupage.json  @uri /openRefine_history/openRefine_history_menupage.json
+#     @end Clean_Menupage_With_OpenRefine
+
+#     @begin Clean_MenuItem_With_OpenRefine  @desc Use OpenRefine to clean MenuItem.csv
+#     @in MenuItem.csv  @uri /original_dataset/MenuItem.csv
+#     @param Table_Menuitem_Cleaning_Plan
+#     @out CleanMenuItem.csv  @uri /cleaned_dataset/CleanMenuItem.csv
+#     @out openRefine_history_menuitem.json  @uri /openRefine_history/openRefine_history_menuitem.json
+#     @end Clean_MenuItem_With_OpenRefine
+
+#     @begin Table_Menu_Creation_and_Data_Import_With_SQL  @desc Use SQL to create Table Menu and import CleanMenu.csv into the table
+#     @in CleanMenu.csv  @uri /cleaned_dataset/CleanMenu.csv
+#     @out TABLE_MENU
+#     @end Table_Menu_Creation_and_Data_Import_With_SQL
+
+#     @begin Table_Dish_Creation_and_Data_Import_With_SQL  @desc Use SQL to create Table Dish and import CleanDish.csv into the table
+#     @in CleanDish.csv  @uri /cleaned_dataset/CleanDish.csv
+#     @out TABLE_DISH
+#     @end Table_Dish_Creation_and_Data_Import_With_SQL
+
+#     @begin Table_MenuPage_Creation_and_Data_Import_With_SQL  @desc Use SQL to create Table MenuPage and import CleanMenuPage.csv into the table
+#     @in CleanMenuPage.csv  @uri /cleaned_dataset/CleanMenuPage.csv
+#     @out TABLE_MENUPAGE
+#     @end Table_MenuPage_Creation_and_Data_Import_With_SQL
+
+#     @begin Table_MenuItem_Creation_and_Data_Import_With_SQL  @desc Use SQL to create Table MenuItem and import CleanMenuItem.csv into the table
+#     @in CleanMenuItem.csv  @uri /cleaned_dataset/CleanMenuItem.csv
+#     @out TABLE_MENUITEM
+#     @end Table_MenuItem_Creation_and_Data_Import_With_SQL
+
+
+
+#     @begin Constraints_Check_With_SQL  @desc Use SQL to check integrity constraints
+#     @in TABLE_MENU  
+#     @in TABLE_DISH  
+#     @in TABLE_MENUITEM  
+#     @in TABLE_MENUPAGE  
+#     @param Integrity_Constraints_Scripts
+#     @out CheckedMenu.csv  @uri /checked_dataset/CheckedMenu.csv
+#     @out CheckedDish.csv  @uri /checked_dataset/CheckedDish.csv
+#     @out CheckedMenuItem.csv   @uri /checked_dataset/CheckedMenuItem.csv
+#     @out CheckedMenuPage.csv  @uri /checked_dataset/CheckedMenuPage.csv
+#     @end Constraints_Check_With_SQL
+
+
+# @out CheckedMenu.csv  @uri /checked_dataset/CheckedMenu.csv
+# @out CheckedDish.csv  @uri /checked_dataset/CheckedDish.csv
+# @out CheckedMenuItem.csv  @uri /checked_dataset/CheckedMenuItem.csv
+# @out CheckedMenuPage.csv  @uri /checked_dataset/CheckedMenuPage.csv
+# @out openRefine_history_menu.json  @uri /openRefine_history/openRefine_history_menu.json
+# @out openRefine_history_menuitem.json  @uri /openRefine_history/openRefine_history_menuitem.json
+# @out openRefine_history_menupage.json  @uri /openRefine_history/openRefine_history_menupage.json
+# @out openRefine_history_dish.json  @uri /openRefine_history/openRefine_history_dish.json
+
+
+# @end Overall_Workflow

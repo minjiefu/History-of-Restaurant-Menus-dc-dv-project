@@ -1,0 +1,51 @@
+#@begin Menuitem.csv_Parallel_OR #@desc Parallel OpenRefine Workflow
+#@param expression:value.toNumber()
+#@param expression:value.toDate()
+#@in xpos
+#@in created_at
+#@in updated_at
+#@in ypos
+#@in high_price
+#@in price
+#@out Cleaned_Menuitem_Table
+
+#@begin core/text-transform0 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in price
+#@out price_1
+#@end core/text-transform0
+#@begin core/text-transform1 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in high_price
+#@out high_price_1
+#@end core/text-transform1
+#@begin core/text-transform2 #@desc Transform data type to date
+#@param expression:value.toDate()
+#@in created_at
+#@out created_at_1
+#@end core/text-transform2
+#@begin core/text-transform3 #@desc Transform data type to date
+#@param expression:value.toDate()
+#@in updated_at
+#@out updated_at_1
+#@end core/text-transform3
+#@begin core/text-transform4 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in xpos
+#@out xpos_1
+#@end core/text-transform4
+#@begin core/text-transform5 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in ypos
+#@out ypos_1
+#@end core/text-transform5
+#@begin CombineDataCleaningChanges
+#@in price_1
+#@in high_price_1
+#@in created_at_1
+#@in updated_at_1
+#@in xpos_1
+#@in ypos_1
+#@out Cleaned_Menuitem_Table
+#@end CombineDataCleaningChanges
+#@end Menuitem.csv_Parallel_OR

@@ -1,0 +1,82 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label="Menuitem.csv_Parallel_OR"
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+"core/text-transform0" [shape=record rankdir=LR label="{<f0> core/text-transform0 |<f1> Transform data type to number}"];
+"core/text-transform1" [shape=record rankdir=LR label="{<f0> core/text-transform1 |<f1> Transform data type to number}"];
+"core/text-transform2" [shape=record rankdir=LR label="{<f0> core/text-transform2 |<f1> Transform data type to date}"];
+"core/text-transform3" [shape=record rankdir=LR label="{<f0> core/text-transform3 |<f1> Transform data type to date}"];
+"core/text-transform4" [shape=record rankdir=LR label="{<f0> core/text-transform4 |<f1> Transform data type to number}"];
+"core/text-transform5" [shape=record rankdir=LR label="{<f0> core/text-transform5 |<f1> Transform data type to number}"];
+CombineDataCleaningChanges
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+Cleaned_Menuitem_Table
+price
+high_price
+created_at
+updated_at
+xpos
+ypos
+price_1
+high_price_1
+created_at_1
+updated_at_1
+xpos_1
+ypos_1
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+"expression:value.toNumber()"
+"expression:value.toDate()"
+
+/* Edges representing connections between programs and channels */
+"core/text-transform0" -> price_1
+"expression:value.toNumber()" -> "core/text-transform0"
+price -> "core/text-transform0"
+"core/text-transform1" -> high_price_1
+"expression:value.toNumber()" -> "core/text-transform1"
+high_price -> "core/text-transform1"
+"core/text-transform2" -> created_at_1
+"expression:value.toDate()" -> "core/text-transform2"
+created_at -> "core/text-transform2"
+"core/text-transform3" -> updated_at_1
+"expression:value.toDate()" -> "core/text-transform3"
+updated_at -> "core/text-transform3"
+"core/text-transform4" -> xpos_1
+"expression:value.toNumber()" -> "core/text-transform4"
+xpos -> "core/text-transform4"
+"core/text-transform5" -> ypos_1
+"expression:value.toNumber()" -> "core/text-transform5"
+ypos -> "core/text-transform5"
+CombineDataCleaningChanges -> Cleaned_Menuitem_Table
+price_1 -> CombineDataCleaningChanges
+high_price_1 -> CombineDataCleaningChanges
+created_at_1 -> CombineDataCleaningChanges
+updated_at_1 -> CombineDataCleaningChanges
+xpos_1 -> CombineDataCleaningChanges
+ypos_1 -> CombineDataCleaningChanges
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* End of top-level graph */
+}

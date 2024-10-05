@@ -1,0 +1,144 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label="Menu.csv_Parallel_OR"
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+"core/text-transform0" [shape=record rankdir=LR label="{<f0> core/text-transform0 |<f1> Trim leading and trailing whitespace}"];
+"core/text-transform1" [shape=record rankdir=LR label="{<f0> core/text-transform1 |<f1> Collapse consecutive whitespace}"];
+"core/text-transform2" [shape=record rankdir=LR label="{<f0> core/text-transform2 |<f1> Transforms to title case}"];
+"core/mass-edit3" [shape=record rankdir=LR label="{<f0> core/mass-edit3 |<f1> GREL remove special characters}"];
+"core/mass-edit4" [shape=record rankdir=LR label="{<f0> core/mass-edit4 |<f1> Clustering}"];
+"core/text-transform5" [shape=record rankdir=LR label="{<f0> core/text-transform5 |<f1> Trim leading and trailing whitespace}"];
+"core/text-transform6" [shape=record rankdir=LR label="{<f0> core/text-transform6 |<f1> Collapse consecutive whitespace}"];
+"core/text-transform7" [shape=record rankdir=LR label="{<f0> core/text-transform7 |<f1> Transforms to title case}"];
+"core/mass-edit8" [shape=record rankdir=LR label="{<f0> core/mass-edit8 |<f1> GREL remove special characters}"];
+"core/mass-edit9" [shape=record rankdir=LR label="{<f0> core/mass-edit9 |<f1> Clustering}"];
+"core/text-transform16" [shape=record rankdir=LR label="{<f0> core/text-transform16 |<f1> Transform data type to date}"];
+"core/text-transform15" [shape=record rankdir=LR label="{<f0> core/text-transform15 |<f1> Transform data type to number}"];
+"core/text-transform10" [shape=record rankdir=LR label="{<f0> core/text-transform10 |<f1> Transform data type to number}"];
+"core/column-removal14" [shape=record rankdir=LR label="{<f0> core/column-removal14 |<f1> Remove column notes}"];
+"core/column-removal13" [shape=record rankdir=LR label="{<f0> core/column-removal13 |<f1> Remove column keywords}"];
+"core/column-removal12" [shape=record rankdir=LR label="{<f0> core/column-removal12 |<f1> Remove column language}"];
+"core/column-removal11" [shape=record rankdir=LR label="{<f0> core/column-removal11 |<f1> Remove column location_type}"];
+CombineDataCleaningChanges
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+Cleaned_Menu_Table
+name
+name_1
+name_2
+name_3
+name_4
+event
+event_1
+event_2
+event_3
+event_4
+date
+page_count
+dish_count
+notes
+keywords
+language
+location_type
+name_5
+event_5
+date_1
+page_count_1
+dish_count_1
+notes_1
+"remove-keywords"
+"remove-language"
+"remove-location_type"
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+"expression:value.trim()"
+"expression:value.replace(/\\s+/,'_')"
+"expression:value.toTitlecase()"
+"expression:value.replace(...)"
+clustering
+"expression:value.toNumber()"
+
+/* Edges representing connections between programs and channels */
+"core/text-transform0" -> name_1
+"expression:value.trim()" -> "core/text-transform0"
+name -> "core/text-transform0"
+"core/text-transform1" -> name_2
+"expression:value.replace(/\\s+/,'_')" -> "core/text-transform1"
+name_1 -> "core/text-transform1"
+"core/text-transform2" -> name_3
+"expression:value.toTitlecase()" -> "core/text-transform2"
+name_2 -> "core/text-transform2"
+"core/mass-edit3" -> name_4
+"expression:value.replace(...)" -> "core/mass-edit3"
+name_3 -> "core/mass-edit3"
+"core/mass-edit4" -> name_5
+clustering -> "core/mass-edit4"
+name_4 -> "core/mass-edit4"
+"core/text-transform5" -> event_1
+"expression:value.trim()" -> "core/text-transform5"
+event -> "core/text-transform5"
+"core/text-transform6" -> event_2
+"expression:value.replace(/\\s+/,'_')" -> "core/text-transform6"
+event_1 -> "core/text-transform6"
+"core/text-transform7" -> event_3
+"expression:value.toTitlecase()" -> "core/text-transform7"
+event_2 -> "core/text-transform7"
+"core/mass-edit8" -> event_4
+"expression:value.replace(...)" -> "core/mass-edit8"
+event_3 -> "core/mass-edit8"
+"core/mass-edit9" -> event_5
+clustering -> "core/mass-edit9"
+event_4 -> "core/mass-edit9"
+"core/text-transform16" -> date_1
+date -> "core/text-transform16"
+"core/text-transform15" -> page_count_1
+page_count -> "core/text-transform15"
+"core/text-transform10" -> dish_count_1
+"expression:value.toNumber()" -> "core/text-transform10"
+dish_count -> "core/text-transform10"
+"core/column-removal14" -> notes_1
+notes -> "core/column-removal14"
+"core/column-removal13" -> "remove-keywords"
+keywords -> "core/column-removal13"
+"core/column-removal12" -> "remove-language"
+language -> "core/column-removal12"
+"core/column-removal11" -> "remove-location_type"
+location_type -> "core/column-removal11"
+CombineDataCleaningChanges -> Cleaned_Menu_Table
+name_5 -> CombineDataCleaningChanges
+event_5 -> CombineDataCleaningChanges
+date_1 -> CombineDataCleaningChanges
+page_count_1 -> CombineDataCleaningChanges
+dish_count_1 -> CombineDataCleaningChanges
+notes_1 -> CombineDataCleaningChanges
+keywords -> CombineDataCleaningChanges
+"remove-keywords" -> CombineDataCleaningChanges
+language -> CombineDataCleaningChanges
+"remove-language" -> CombineDataCleaningChanges
+location_type -> CombineDataCleaningChanges
+"remove-location_type" -> CombineDataCleaningChanges
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* End of top-level graph */
+}

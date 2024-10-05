@@ -1,0 +1,102 @@
+#@begin Dish.csv_Parallel_OR #@desc Parallel OpenRefine Workflow
+#@param expression:value.trim()
+#@param expression:value.toTitlecase()
+#@param expression:value.replace(/\\s+/,'_')
+#@param expression:value.replace(...)
+#@param expression:value.toNumber()
+
+#@in first_appeared
+#@in name_1
+#@in highest_price
+#@in name_3
+#@in last_appeared
+#@in name_2
+#@in name
+#@in times_appeared
+#@in name_5
+#@in menus_appeared
+#@in lowest_price
+#@in name_4
+#@out Cleaned_Menu_Table
+
+#@begin core/text-transform0 #@desc Trim leading and trailing whitespace
+#@param expression:value.trim()
+#@in name
+#@out name_1
+#@end core/text-transform0
+
+#@begin core/text-transform1 #@desc Collapse consecutive whitespace
+#@param expression:value.replace(/\\s+/,'_')
+#@in name_1
+#@out name_2
+#@end core/text-transform1
+
+#@begin core/text-transform2 #@desc Text Transforms to title case
+#@param expression:value.toTitlecase()
+#@in name_2
+#@out name_3
+#@end core/text-transform2
+
+#@begin core/mass-edit4 #@desc GREL remove special characters
+#@param expression:value.replace(...)
+#@in name_3
+#@out name_4
+#@end core/mass-edit4
+
+#@begin core/mass-edit5 #@desc Clustering
+#@param clustering
+#@in name_4
+#@out name_5
+#@end core/mass-edit5
+
+
+#@begin core/text-transfor6 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in lowest_price
+#@out lowest_price_1
+#@end core/text-transform6
+
+
+#@begin core/text-transform7 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in highest_price
+#@out highest_price_1
+#@end core/text-transform7
+
+#@begin core/text-transform8 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in menus_appeared
+#@out menus_appeared_1
+#@end core/text-transform8
+
+#@begin core/text-transform9 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in times_appeared
+#@out times_appeared_1
+#@end core/text-transform9
+
+#@begin core/text-transform10 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in first_appeared
+#@out first_appeared_1
+#@end core/text-transform10
+
+#@begin core/text-transform11 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in last_appeared
+#@out last_appeared_1
+#@end core/text-transform11
+
+
+#@begin CombineDataCleaningChanges
+#@in name_5
+#@in menus_appeared_1
+#@in times_appeared_1
+#@in first_appeared_1
+#@in last_appeared_1
+#@in lowest_price_1
+#@in highest_price_1
+
+#@out Cleaned_Dish_Table
+#@end CombineDataCleaningChanges
+#@end Dish.csv_Parallel_OR

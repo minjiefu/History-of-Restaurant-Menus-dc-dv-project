@@ -1,0 +1,136 @@
+//Create Table Dish
+
+CREATE TABLE dish (
+id VARCHAR(1500) PRIMARY KEY NOT NULL, 
+name VARCHAR(255),
+Description VARCHAR(255),
+menus_appeared INTEGER, 
+times_appeared INTEGER, 
+first_appeared INTEGER, 
+last_appeared INTEGER, 
+lowest_price NUMERIC,
+highest_price NUMERIC
+);
+
+
+//Create Table Menu
+
+CREATE TABLE menu (
+id VARCHAR(255) PRIMARY KEY NOT NULL, 
+name VARCHAR(255),
+sponsor VARCHAR(255),
+event VARCHAR(255),
+venue VARCHAR(255),
+place VARCHAR(255),
+physical_desc VARCHAR(255),
+occasion VARCHAR(255),
+notes VARCHAR(255),
+call_number VARCHAR(255),
+date DATE,
+location VARCHAR(255),
+currency VARCHAR(255),
+currency_symbol VARCHAR(255),
+status VARCHAR(255), 
+page_count INTEGER, 
+dish_count INTEGER 
+);
+
+
+//Create Table MenuPage
+
+CREATE TABLE menupage (
+id VARCHAR(255) PRIMARY KEY NOT NULL, 
+menu_id VARCHAR(255), 
+page_number INTEGER,
+image_id VARCHAR(255),
+full_height INTEGER,
+full_width INTEGER,
+uuid VARCHAR(255)
+);
+
+
+//Create Table MenuItem
+
+CREATE TABLE menuitem (
+id VARCHAR(255) PRIMARY KEY NOT NULL,
+menu_page_id VARCHAR(255), 
+price NUMERIC,
+high_price NUMERIC,
+dish_id VARCHAR(255),
+created_at DATE,
+updated_at DATE, 
+xpos NUMERIC, 
+ypos NUMERIC
+);
+
+
+//Integrity Constraints Check
+
+//a) “Menu can’t have 0 page count”. 
+
+select count(*)
+from menu
+where page_count=0;
+
+//b) “As for dishes, the number of menus_appeared must be equal or smaller than the number of times_appeared”. 
+
+select count(*)
+from dish
+where menus_appeared > times_appeared;
+
+
+//c) “As for dishes, the first_appeared time must be earlier than or the same as the last_appeared time”. 
+
+select count(*)
+from dish
+where first_appeared > last_appeared;
+
+
+//d) “As for menu items, the created_at date must be earlier than or the same as the updated_at date”. 
+
+select count(*)
+from menuitem
+where created_at > updated_at;
+
+
+//e) “As for dishes, the lowest_price must be lower than or the same as the highest_price”. 
+
+select count(*)
+from dish
+where lowest_price > highest_price;
+
+
+//Use Case Demo
+
+//a) Which 10 restaurants have the most menus collected in this dataset?
+
+select name, count(name) from menu
+group by name
+order by count(name) desc
+limit 10;
+
+
+//b) Which 10 dishes most often appeared on the menus of the top restaurants?
+
+select d.name,count(d.name)
+from menu a, menupage b, menuitem c, dish d
+where a.id=b.menu_id
+and b.id=c.menu_page_id
+and c.dish_id=d.id
+and a.name='Waldorf Astoria'
+group by d.name
+order by count(d.name) desc
+limit 10;
+
+
+//c) Which 10 dishes are most popular for a certain event (e.g. breakfast)?
+
+select distinct d.name,count(d.name), a.event
+from menu a, menupage b, menuitem c, dish d
+where a.id=b.menu_id
+and b.id=c.menu_page_id
+and c.dish_id=d.id
+and a.event='Breakfast'
+group by d.name, a.event
+order by count(d.name) desc
+limit 10;

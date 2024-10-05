@@ -1,0 +1,37 @@
+#@begin Menupage.csv_Parallel_OR #@desc Parallel OpenRefine Workflow
+#@param expression:value.toNumber()
+#@param expression:value.toLowercase()
+#@in page_number
+#@in full_width
+#@in uuid
+#@in full_height
+#@out Cleaned_Menupage_Table
+#@begin core/text-transform0 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in page_number
+#@out page_number_1
+#@end core/text-transform0
+#@begin core/text-transform1 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in full_height
+#@out full_height_1
+#@end core/text-transform1
+#@begin core/text-transform2 #@desc Transform data type to number
+#@param expression:value.toNumber()
+#@in full_width
+#@out full_width_1
+#@end core/text-transform2
+#@begin core/text-transform3 #@desc Transforms to lowercase
+#@param expression:value.toLowercase()
+#@in uuid
+#@out uuid_1
+#@end core/text-transform3
+
+#@begin CombineDataCleaningChanges
+#@in page_number_1
+#@in full_height_1
+#@in full_width_1
+#@in uuid_1
+#@out Cleaned_Menupage_Table
+#@end CombineDataCleaningChanges
+#@end Menupage.csv_Parallel_OR
