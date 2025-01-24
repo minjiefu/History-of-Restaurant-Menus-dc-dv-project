@@ -1,5 +1,5 @@
 # Title
-Tracing the History of Restaurant Menus
+MenuVista - Tracing the History of Restaurant Menus
 
 # Data Cleaning
 ## Purpose
